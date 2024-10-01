@@ -6,28 +6,72 @@
     <link rel="stylesheet" href="style.css">
     <title>Rick e Morty</title>
 </head>
-<body>
+<body >
+   
+    <div 
+    id="modal" class="modal">
+      
+        <span 
+        id="titleModal"
+        style=" color: white; font-size: 20px;">Personagem não encontrado!</span>
+        <img 
+        id="closeModal"
+        style="cursor: pointer;"
+        src="./img/close.png" alt="hamburguer-menu">
+    </div>
     <header>
        <div class="img-container">
-            <img src="img/logo.jpeg" alt="logo">
+            <img src="img/rick.png" alt="logo">
        </div>
 
        <ul>
         <li>
-            <a href="">About</a>
+            <a href="/">home</a>
         </li>
         <li>
-            <a href="">Home</a>
+            <a href="/">about</a>
         </li>
        </ul>
+
+       <div id="openMenu" class="openMenu">
+            <img   src="./img/cadapio.png" alt="hamburguer-menu">
+       </div>
+
     </header>
     <main>
-        body
+       <div class="main-container">
+           <div class="search-container">
+             <input 
+             id="value"
+             type="text" placeholder="Personagem...">
+             <Button id="button">Buscar</Button>
+           </div>
+           
+           <div id="showResult" class="result-container">
+              <div id="result-name-container" class="result-name-container">
+                  <h1 id="name">Busque seu Personagem</h1>
+              </div>
+              <div id="img-container" class="img-container">
+                  <img
+                  id="imgCharacter"
+                  src="/img/rick.png" alt="image-logo">
+              </div>
+           </div>
+       </div>
     </main>
     <footer>
-        footer
+        <span>Produzido por Bruno Adller &copy; 2024</span>
     </footer>
-
-    <script src="index.js"></script>
+    <div 
+    id="menu" class="menu">
+        <img 
+        id="closeButton"
+        style="width: 30px; height: 30px; cursor: pointer;"
+        src="/img/close.png" alt="">
+        <a href="/">Home</a>
+        <a href="/">About</a>
+    </div>
+   
+    <script type="module" src="index.js"></script>
 </body>
 </html>
