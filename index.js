@@ -38,42 +38,30 @@ const titleModal = document.getElementById("titleModal")
 
 
 let pTag = []
-let isCreateTag = false
 
-window.addEventListener('resize', () => {
-    if(window.innerWidth > 580){
-       
-    }
-});
-button.addEventListener('click', () => {
+const getSearchEvent = () => {
     if(inputValue.value == ""){
-        modal.style.transform = 'translateX(0)'
-        titleModal.textContent = "Preencha o campo com o nome Desejado"
+        showModal("Preencha o campo com o nome Desejado")
+       
     }else{
         searchCharacter(inputValue.value)
-      
     }
 
+}
+window.addEventListener('resize', () => {
+     if(window.innerWidth > 580){
+        menu.style.display = 'none'
+     }else{
+        menu.style.display = 'flex'
+     }
+})
+button.addEventListener('click', () => {
+    getSearchEvent()
 })
 closeModal.addEventListener('click', () => {
     modal.style.transform = 'translateX(-300px)'
     
 })
-
-closeButton.addEventListener('click', () => {
-    menu.style.transform = 'translateX(-1100px);'
-    inputValue.disabled = false
-    button.disabled = false
-})
-openMenu.addEventListener('click', () => {
-    menu.style.transform = 'translateX(-200px);'
-    inputValue.disabled = true
-    button.disabled = true
-    console.log("deu")
-})
-
-
-
 const setNameCharacterInScreen = (name) => {
     nameTitle.textContent = name
 }
@@ -87,7 +75,7 @@ const cleanInput = () => {
 const createTagsResultName = (gender, species, status) => {
     let description = [gender, species, status]
     let  titleDescription = ["Gênero", "Espécie", "Status"]
-    let traduction = ["Macho"]
+    
     if(pTag.length == 0){
         
         for(let i = 0; i < 3; i++){
@@ -103,7 +91,7 @@ const createTagsResultName = (gender, species, status) => {
 const searchCharacter = (nameCharacter) => {
   
     let filterData = dataCharacter.filter(element => element.name.toLowerCase() == nameCharacter.toLowerCase())
-   console.log(filterData)
+    console.log(filterData)
     if(filterData.length > 0){
        filterData.forEach(element => {
         setNameCharacterInScreen(element.name)
@@ -113,8 +101,7 @@ const searchCharacter = (nameCharacter) => {
         
        })
     }else{
-        modal.style.transform = 'translateX(0)'
-        titleModal.textContent = "Nome não encontrado"
+        showModal('Nome não encontrado')
         inputValue.disabled = false
         button.disabled = false
         cleanInput()
@@ -122,8 +109,30 @@ const searchCharacter = (nameCharacter) => {
     
 
 }
+const showModal = (message) => {
+    modal.style.display = 'flex'
+    modal.style.transform = 'translateX(0)'
+    titleModal.textContent = message
+    setTimeout(() => {
+        modal.style.transform = 'translateX(-300px)'
+    }, 2000)
+}
 
 
+openMenu.addEventListener('click', () => {
+    menu.style.transform = 'translateX(0px)'
+    inputValue.disabled = true
+    button.disabled = true
+})
+closeButton.addEventListener('click', () => {
+    menu.style.transform = 'translateX(200px)'
+    inputValue.disabled = false
+    button.disabled = false
+})
 
-
+inputValue.addEventListener('keydown', (e) => {
+    if(e.key === 'Enter'){
+        getSearchEvent()
+    }
+})
 
