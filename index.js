@@ -35,6 +35,7 @@ const openImg = document.getElementById('openImg')
 const closeModal = document.getElementById('closeModal')
 const modal = document.getElementById('modal')
 const titleModal = document.getElementById("titleModal")
+const loading = document.getElementById('loading')
 
 
 let pTag = []
@@ -56,7 +57,14 @@ window.addEventListener('resize', () => {
      }
 })
 button.addEventListener('click', () => {
+    loading.style.display = 'block'
+    showResult.style.display = 'none'
+    setTimeout(() => {
+        loading.style.display = 'none'
+        showResult.style.display = 'block'
+    }, 2000)
     getSearchEvent()
+   
 })
 closeModal.addEventListener('click', () => {
     modal.style.transform = 'translateX(-300px)'
@@ -132,6 +140,12 @@ closeButton.addEventListener('click', () => {
 
 inputValue.addEventListener('keydown', (e) => {
     if(e.key === 'Enter'){
+        loading.style.display = 'block'
+        showResult.style.display = 'none'
+        setTimeout(() => {
+            loading.style.display = 'none'
+            showResult.style.display = 'block'
+        }, 2000)
         getSearchEvent()
     }
 })
